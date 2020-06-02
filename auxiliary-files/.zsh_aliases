@@ -1,0 +1,8 @@
+WINDOWS="/mnt/c"
+WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
+REPOS="$WINUSER/Documents/repos"
+
+alias python="python3"
+alias pip="pip3"
+alias config="vim ~/.zshrc"
+alias aliases="vim ~/.zsh_aliases"
