@@ -7,7 +7,6 @@ sudo apt-get install python3-pip -y
 sudo apt-get install texlive-base -y
 sudo apt-get install texlive-science -y
 sudo apt-get install texlive-latex-extra -y
-sudo apt-get install latexmk -y
 sudo apt-get install zsh -y
 
 #oh-my-zsh
