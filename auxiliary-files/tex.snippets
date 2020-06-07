@@ -1,53 +1,17 @@
+# TEXT FORMATTING
+
 snippet '\\begin{(\w+)}' "begin/end" r
-\begin{`!p snip.rv = match.group(1)`}
+\begin{~!p snip.rv = match.group(1)~}
 	$0
-\end{`!p snip.rv = match.group(1)`}
+\end{~!p snip.rv = match.group(1)~}
 endsnippet
 
-snippet // "Fraction" iA
-\frac{$1}{$2}$0
+snippet 'tem ' "Text emphasis" rA
+\textem{$1} $0
 endsnippet
 
-snippet inflim "Infinite limit" A
-\lim_{$1\to\infty}$0
-endsnippet
-
-snippet infint "Infinite integral" A
-\int_{-\infty}^{+\infty} $1 \dd{$2} $0
-endsnippet
-
-snippet $four "Fourier transform" A
-\int_{-\infty}^{+\infty} \frac{1}{2\pi\hbar} e^{\frac{i}{\hbar} $1} $2 \dd{$3} $0
-endsnippet
-
-snippet \dv "Derivative" A
-\dv{$1}{$2}$0
-endsnippet
-
-snippet \pdv "Partial derivative" A
-\pdv{$1}{$2}$0
-endsnippet
-
-snippet _ "Subscript" iA
-_{$1}$0
-endsnippet
-
-snippet ^ "Superscript" iA
-^{$1}$0
-endsnippet
-
-snippet \( "Inline equation" A
-\($1\)$0
-endsnippet
-
-snippet \[ "Aligned unlabeled equation" A
-\[$1\]$0
-endsnippet
-
-snippet eqn "equation" A
-\begin{equation}\label{$1}
-	$2
-\end{equation}
+snippet 'tbf ' "Text boldface" rA
+\textbf{$1} $0
 endsnippet
 
 snippet sct1 "section" iA 
@@ -65,7 +29,206 @@ snippet sct3 "subsubsection" iA
 $0
 endsnippet
 
-snippet ft "footnote" iA
+snippet 'ft ' "footnote" irA
 \footnote{$1}$0
 endsnippet
 
+# MATH FORMATTING
+
+snippet __ "Subscript" iA
+_{$1}$0
+endsnippet
+
+snippet ^^ "Superscript" iA
+^{$1}$0
+endsnippet
+
+snippet '\\\( ' "Inline equation" rA
+\($1\)$0
+endsnippet
+
+snippet '\\\[ ' "Aligned unlabeled equation" rA
+\[$1\]$0
+endsnippet
+
+snippet eqn "equation" A
+\begin{equation}\label{$1}
+	$2
+\end{equation}
+endsnippet
+
+# OPERATIONS
+
+snippet // "Fraction" iA
+\frac{$1}{$2}$0
+endsnippet
+
+snippet inflim "Infinite limit" A
+\lim_{$1\to\infty}$0
+endsnippet
+
+snippet infint "Infinite integral" A
+\int_{-\infty}^{+\infty} $1 \dd{$2} $0
+endsnippet
+
+snippet $four "Fourier transform" A
+\int_{-\infty}^{+\infty} \frac{1}{2\pi\hbar} e^{\frac{i}{\hbar} $1} $2 \dd{$3} $0
+endsnippet
+
+snippet !> "mapsto" iA
+\mapsto
+endsnippet
+
+snippet '(?<!p)dv ' "derivative" riA
+\dv{$1}{$2} $0
+endsnippet
+
+snippet 'pdv ' "Partial derivative" riA
+\pdv{$1}{$2} $0
+endsnippet
+
+# CHARACTERS
+# LOWERCASE
+
+snippet ~a "alpha" iA
+\alpha
+endsnippet
+
+snippet ~b "beta" iA
+\beta
+endsnippet
+
+snippet ~g "gamma" iA
+\gamma
+endsnippet
+
+snippet ~d "delta" iA
+\delta
+endsnippet
+
+snippet ~e "epsilon" iA
+\epsilon
+endsnippet
+
+snippet ~z "zeta" iA
+\zeta
+endsnippet
+
+snippet ~n "eta" iA
+\eta
+endsnippet
+
+snippet ~o "theta" iA
+\theta
+endsnippet
+
+# skip iota
+# skip kappa
+
+snippet ~l "lambda" iA
+\lambda
+endsnippet
+
+snippet ~m "mu" iA
+\mu
+endsnippet
+
+# skip nu
+
+snippet ~x "xi" iA
+\xi
+endsnippet
+
+# skip omicron
+
+snippet ~p "pi" iA
+\pi
+endsnippet
+
+snippet ~r "rho" iA
+\rho
+endsnippet
+
+snippet ~s "sigma" iA
+\sigma
+endsnippet
+
+snippet ~t "tau" iA
+\tau
+endsnippet
+
+# skip upsilon
+
+snippet ~f "phi" iA
+\phi
+endsnippet
+
+# skip chi
+
+snippet ~i "psi" iA
+\psi
+endsnippet
+
+snippet ~w "oemga" iA
+\omega
+endsnippet
+
+# UPPERCASE
+
+# skip Alpha
+# skip Beta
+
+snippet ~G "Gamma" iA
+\Gamma
+endsnippet
+
+snippet ~D "Delta" iA
+\Delta
+endsnippet
+
+# skip Epsilon
+# skip Zeta
+# skip Eta
+
+snippet ~T "Theta" iA
+\Theta
+endsnippet
+
+# skip Iota
+# skip Kappa
+
+snippet ~L "Lambda" iA
+\Lambda
+endsnippet
+
+# skip Mu
+# skip Nu
+# skip Xi
+# skip Omicron
+
+snippet ~P "Pi" iA
+\Pi
+endsnippet
+
+# skip Rho
+
+snippet ~S "Sigma" iA
+\Sigma
+endsnippet
+
+# skip Tau
+# skip Upsilon
+
+snippet ~F "Phi" iA
+\Phi
+endsnippet
+
+# skip Xi
+
+snippet ~I "Psi" iA
+\Psi
+endsnippet
+
+snippet ~W "Omega" iA
+\Omega
+endsnippet
