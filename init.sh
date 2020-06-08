@@ -4,6 +4,7 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt-get install python3.7 -y
 sudo apt-get install python3-pip -y
+sudo apt-get install python3-venv -y
 sudo apt-get install texlive-base -y
 sudo apt-get install texlive-science -y
 sudo apt-get install texlive-latex-extra -y
