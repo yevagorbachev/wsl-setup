@@ -1,17 +1,17 @@
 # TEXT FORMATTING
 
 snippet '\\begin{(\w+)}' "begin/end" r
-\begin{~!p snip.rv = match.group(1)~}
+\begin{`!p snip.rv = match.group(1)`}
 	$0
-\end{~!p snip.rv = match.group(1)~}
+\end{`!p snip.rv = match.group(1)`}
 endsnippet
 
-snippet 'tem ' "Text emphasis" rA
-\textem{$1} $0
+snippet tem "Text emphasis"
+\emph{$1}$0
 endsnippet
 
-snippet 'tbf ' "Text boldface" rA
-\textbf{$1} $0
+snippet tbf "Text boldface"
+\textbf{$1}$0
 endsnippet
 
 snippet sct1 "section" iA 
@@ -34,6 +34,18 @@ snippet 'ft ' "footnote" irA
 endsnippet
 
 # MATH FORMATTING
+
+snippet '(?<!\\)([a-zA-Z])dot' "Dot" rA
+\dot{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet '([a-zA-Z])hatt' "Hat" rA
+\hat{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet '([a-zA-Z])vec' "Vector" rA
+\vb{`!p snip.rv = match.group(1)`}
+endsnippet
 
 snippet __ "Subscript" iA
 _{$1}$0
@@ -63,12 +75,17 @@ snippet // "Fraction" iA
 \frac{$1}{$2}$0
 endsnippet
 
-snippet inflim "Infinite limit" A
+snippet '(int|oint)' "Integral" r
+\\`!p snip.rv = match.group(1)`_{$1}$2\dd{$3}$0
+endsnippet
+
+
+snippet inflim "Infinite limit" iA
 \lim_{$1\to\infty}$0
 endsnippet
 
-snippet infint "Infinite integral" A
-\int_{-\infty}^{+\infty} $1 \dd{$2} $0
+snippet infint "Infinite integral" iA
+\int_{-\infty}^{+\infty} $1\dd{$2}$0
 endsnippet
 
 snippet $four "Fourier transform" A
@@ -80,96 +97,96 @@ snippet !> "mapsto" iA
 endsnippet
 
 snippet '(?<!p)dv ' "derivative" riA
-\dv{$1}{$2} $0
+\dv{$1}{$2}\/$0
 endsnippet
 
 snippet 'pdv ' "Partial derivative" riA
-\pdv{$1}{$2} $0
+\pdv{$1}{$2}\/$0
 endsnippet
 
 # CHARACTERS
 # LOWERCASE
 
-snippet ~a "alpha" iA
+snippet '`a ' "alpha" riA
 \alpha
 endsnippet
 
-snippet ~b "beta" iA
+snippet '`b ' "beta" riA
 \beta
 endsnippet
 
-snippet ~g "gamma" iA
+snippet '`g ' "gamma" riA
 \gamma
 endsnippet
 
-snippet ~d "delta" iA
+snippet '`d ' "delta" riA
 \delta
 endsnippet
 
-snippet ~e "epsilon" iA
+snippet '`e ' "epsilon" riA
 \epsilon
 endsnippet
 
-snippet ~z "zeta" iA
+snippet '`z ' "zeta" riA
 \zeta
 endsnippet
 
-snippet ~n "eta" iA
+snippet '`n ' "eta" riA
 \eta
 endsnippet
 
-snippet ~o "theta" iA
+snippet '`o ' "theta" riA
 \theta
 endsnippet
 
 # skip iota
 # skip kappa
 
-snippet ~l "lambda" iA
+snippet '`l ' "lambda" riA
 \lambda
 endsnippet
 
-snippet ~m "mu" iA
+snippet '`m ' "mu" riA
 \mu
 endsnippet
 
 # skip nu
 
-snippet ~x "xi" iA
+snippet '`x ' "xi" riA
 \xi
 endsnippet
 
 # skip omicron
 
-snippet ~p "pi" iA
+snippet '`p ' "pi" riA
 \pi
 endsnippet
 
-snippet ~r "rho" iA
+snippet '`r ' "rho" riA
 \rho
 endsnippet
 
-snippet ~s "sigma" iA
+snippet '`s ' "sigma" riA
 \sigma
 endsnippet
 
-snippet ~t "tau" iA
+snippet '`t ' "tau" riA
 \tau
 endsnippet
 
 # skip upsilon
 
-snippet ~f "phi" iA
+snippet '`f ' "phi" riA
 \phi
 endsnippet
 
 # skip chi
 
-snippet ~i "psi" iA
+snippet '`i ' "psi" riA
 \psi
 endsnippet
 
-snippet ~w "oemga" iA
+snippet '`w ' "oemga" riA
 \omega
 endsnippet
 
@@ -178,11 +195,11 @@ endsnippet
 # skip Alpha
 # skip Beta
 
-snippet ~G "Gamma" iA
+snippet '`G ' "Gamma" riA
 \Gamma
 endsnippet
 
-snippet ~D "Delta" iA
+snippet '`D ' "Delta" riA
 \Delta
 endsnippet
 
@@ -190,14 +207,14 @@ endsnippet
 # skip Zeta
 # skip Eta
 
-snippet ~T "Theta" iA
+snippet '`T ' "Theta" riA
 \Theta
 endsnippet
 
 # skip Iota
 # skip Kappa
 
-snippet ~L "Lambda" iA
+snippet '`L ' "Lambda" riA
 \Lambda
 endsnippet
 
@@ -206,29 +223,29 @@ endsnippet
 # skip Xi
 # skip Omicron
 
-snippet ~P "Pi" iA
+snippet '`P ' "Pi" riA
 \Pi
 endsnippet
 
 # skip Rho
 
-snippet ~S "Sigma" iA
+snippet '`S ' "Sigma" riA
 \Sigma
 endsnippet
 
 # skip Tau
 # skip Upsilon
 
-snippet ~F "Phi" iA
+snippet '`F ' "Phi" riA
 \Phi
 endsnippet
 
 # skip Xi
 
-snippet ~I "Psi" iA
+snippet '`I ' "Psi" riA
 \Psi
 endsnippet
 
-snippet ~W "Omega" iA
+snippet '`W ' "Omega" riA
 \Omega
 endsnippet

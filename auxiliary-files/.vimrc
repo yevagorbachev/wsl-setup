@@ -1,6 +1,7 @@
 colo desert
 syntax on
-
+set nu
+highlight LineNr ctermfg=grey
 
 call plug#begin('~/.vim/plugged')
 
@@ -13,5 +14,7 @@ let g:UltiSnipsSpippetDirectories=["/home/yeva/.vim/UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 
 Plug 'jiangmiao/auto-pairs'
+Plug 'lervag/vimtex'
+let g:vimtex_compiler_enabled=0
 
 call plug#end()
