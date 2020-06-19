@@ -29,7 +29,7 @@ snippet sct3 "subsubsection" iA
 $0
 endsnippet
 
-snippet 'ft ' "footnote" irA
+snippet $ft "footnote" iA
 \footnote{$1}$0
 endsnippet
 
@@ -55,7 +55,11 @@ snippet ^^ "Superscript" iA
 ^{$1}$0
 endsnippet
 
-snippet '\\\( ' "Inline equation" rA
+snippet '\\\( (?!\\\))' "Inline equation" rA
+\($1\)$0
+endsnippet
+
+snippet \9 "Inline equation" A
 \($1\)$0
 endsnippet
 
@@ -70,9 +74,14 @@ snippet eqn "equation" A
 endsnippet
 
 # OPERATIONS
-
-snippet // "Fraction" iA
+priority 1
+snippet // "Fraction basic" iA
 \frac{$1}{$2}$0
+endsnippet
+
+priority 2
+snippet '(\{?)(\\?[a-zA-Z0-9{}_\^]+)//' "Fraction advanced" wrA 
+`!p snip.rv = match.group(1)`\frac{`!p snip.rv = match.group(2)`}{$1}$0
 endsnippet
 
 snippet '(int|oint)' "Integral" r
@@ -135,7 +144,7 @@ snippet '`n ' "eta" riA
 \eta
 endsnippet
 
-snippet '`o ' "theta" riA
+snippet '`t ' "theta" riA
 \theta
 endsnippet
 
@@ -170,9 +179,9 @@ snippet '`s ' "sigma" riA
 \sigma
 endsnippet
 
-snippet '`t ' "tau" riA
-\tau
-endsnippet
+# snippet '`t ' "tau" riA
+# \tau
+# endsnippet
 
 # skip upsilon
 

@@ -2,6 +2,7 @@ colo desert
 syntax on
 set nu
 highlight LineNr ctermfg=grey
+set tabstop=4
 
 call plug#begin('~/.vim/plugged')
 
