@@ -23,5 +23,6 @@ echo '. ~/.zsh_aliases' >> ~/.zshrc
 # VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp ~/wsl-setup/auxiliary-files/.vimrc ~/
-mkdir ~/.vim/UltiSnips
-cp ~/wsl-setup/auxiliary-files/*.snippets ~/.vim/UltiSnips/
+
+cp ~/wsl-setup/auxiliary-files/UltiSnips ~/.vim/ -r
+cp ~/wsl-setup/auxiliary-files/ftplugin ~/.vim/ -r
