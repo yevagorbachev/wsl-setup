@@ -6,28 +6,27 @@ setlocal foldcolumn=4
 function! SectionFold(lnum)
 	let line = getline(a:lnum)
 	
-	if line =~ '\{document\}|\\pagebreak'
-		return 0
-	elseif line =~ '^\s*\\section'
+	if line =~ '\\pagebreak'
+		return ">0"
+	elseif line =~ '\\section'
 		return ">1"
-	elseif line =~ '^\s*\\subsection'
+	elseif line =~ '\\subsection'
 		return ">2"
-	elseif line =~ '^\s*\\subsubsection'
+	elseif line =~ '\\subsubsection'
 		return ">3"
-	elseif line =~ '^\s*\\paragraph'
+	elseif line =~ '\\paragraph'
 		return ">4"
+	elseif line =~ '\\begin'
+		return "a1"
+	elseif line =~ '\\end'
+		return "s1"
 	else
 		return "="
 	endif
 
 endfunction
 
-function! Tab()
-	return "\t"
-endfunction
-
-
 function! SectionText(lnum)
-	return repeat("\t", indent(a:lnum)) . getline(a:lnum)
+	return repeat("\t", indent(a:lnum)) . trim(getline(a:lnum))
 endfunction
 

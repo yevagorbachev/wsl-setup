@@ -1,3 +1,29 @@
+global !p
+texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS',
+'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS',
+'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
+'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES',
+'AmsFS', 'AmsGS' ]]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(
+			i for i in reversed(synstackids)
+			if i in texIgnoreMathZoneIds or i in texMathZoneIds	
+		)
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
 # TEXT FORMATTING
 
 snippet '\\begin{(\w+)}' "begin/end" r
@@ -34,32 +60,22 @@ snippet $ft "footnote" iA
 endsnippet
 
 # MATH FORMATTING
-
-snippet '(?<!\\)([a-zA-Z])dot' "Dot" rA
-\dot{`!p snip.rv = match.group(1)`}
+context "math()"
+snippet '((\\[a-zA-Z]+)?(?<!\\)[a-zA-Z](\{(\\[a-zA-Z]+)?[a-zA-Z]\})?)(ddot|dot|vec|hat)' "suffixes" rA 
+\\`!p snip.rv = match.group(5)`{`!p snip.rv = match.group(1)`}
 endsnippet
 
-snippet '([a-zA-Z])hatt' "Hat" rA
-\hat{`!p snip.rv = match.group(1)`}
-endsnippet
-
-snippet '([a-zA-Z])vec' "Vector" rA
-\vb{`!p snip.rv = match.group(1)`}
-endsnippet
-
+context "math()"
 snippet __ "Subscript" iA
 _{$1}$0
 endsnippet
 
+context "math()"
 snippet ^^ "Superscript" iA
 ^{$1}$0
 endsnippet
 
-snippet '\\\( (?!\\\))' "Inline equation" rA
-\($1\)$0
-endsnippet
-
-snippet \9 "Inline equation" A
+snippet \9 "Inline equation" iA
 \($1\)$0
 endsnippet
 
@@ -74,187 +90,55 @@ snippet eqn "equation" A
 endsnippet
 
 # OPERATIONS
+
+context "math()"
 priority 1
 snippet // "Fraction basic" iA
 \frac{$1}{$2}$0
 endsnippet
 
+context "math()"
 priority 2
 snippet '(\{?)(\\?[a-zA-Z0-9{}_\^]+)//' "Fraction advanced" wrA 
 `!p snip.rv = match.group(1)`\frac{`!p snip.rv = match.group(2)`}{$1}$0
 endsnippet
 
+context "math()"
 snippet '(int|oint)' "Integral" r
 \\`!p snip.rv = match.group(1)`_{$1}$2\dd{$3}$0
 endsnippet
 
-
+context "math()"
 snippet inflim "Infinite limit" iA
 \lim_{$1\to\infty}$0
 endsnippet
 
+context "math()"
 snippet infint "Infinite integral" iA
 \int_{-\infty}^{+\infty} $1\dd{$2}$0
 endsnippet
 
+context "math()"
 snippet $four "Fourier transform" A
 \int_{-\infty}^{+\infty} \frac{1}{2\pi\hbar} e^{\frac{i}{\hbar} $1} $2 \dd{$3} $0
 endsnippet
 
+context "math()"
 snippet !> "mapsto" iA
 \mapsto
 endsnippet
 
-snippet '(?<!p)dv ' "derivative" riA
-\dv{$1}{$2}\/$0
+context "math()"
+snippet '\\(p?dt)' "solo diff" ir
+\\`!p snip.rv = match.group(1)`{$1}$0
 endsnippet
 
-snippet 'pdv ' "Partial derivative" riA
-\pdv{$1}{$2}\/$0
+context "math()"
+snippet '\\(p?dv)' "diff in numerator" ir
+\\`!p snip.rv = match.group(1)`{$1}{$2}$0
 endsnippet
 
-# CHARACTERS
-# LOWERCASE
-
-snippet '`a ' "alpha" riA
-\alpha
-endsnippet
-
-snippet '`b ' "beta" riA
-\beta
-endsnippet
-
-snippet '`g ' "gamma" riA
-\gamma
-endsnippet
-
-snippet '`d ' "delta" riA
-\delta
-endsnippet
-
-snippet '`e ' "epsilon" riA
-\epsilon
-endsnippet
-
-snippet '`z ' "zeta" riA
-\zeta
-endsnippet
-
-snippet '`n ' "eta" riA
-\eta
-endsnippet
-
-snippet '`t ' "theta" riA
-\theta
-endsnippet
-
-# skip iota
-# skip kappa
-
-snippet '`l ' "lambda" riA
-\lambda
-endsnippet
-
-snippet '`m ' "mu" riA
-\mu
-endsnippet
-
-# skip nu
-
-snippet '`x ' "xi" riA
-\xi
-endsnippet
-
-# skip omicron
-
-snippet '`p ' "pi" riA
-\pi
-endsnippet
-
-snippet '`r ' "rho" riA
-\rho
-endsnippet
-
-snippet '`s ' "sigma" riA
-\sigma
-endsnippet
-
-# snippet '`t ' "tau" riA
-# \tau
-# endsnippet
-
-# skip upsilon
-
-snippet '`f ' "phi" riA
-\phi
-endsnippet
-
-# skip chi
-
-snippet '`i ' "psi" riA
-\psi
-endsnippet
-
-snippet '`w ' "oemga" riA
-\omega
-endsnippet
-
-# UPPERCASE
-
-# skip Alpha
-# skip Beta
-
-snippet '`G ' "Gamma" riA
-\Gamma
-endsnippet
-
-snippet '`D ' "Delta" riA
-\Delta
-endsnippet
-
-# skip Epsilon
-# skip Zeta
-# skip Eta
-
-snippet '`T ' "Theta" riA
-\Theta
-endsnippet
-
-# skip Iota
-# skip Kappa
-
-snippet '`L ' "Lambda" riA
-\Lambda
-endsnippet
-
-# skip Mu
-# skip Nu
-# skip Xi
-# skip Omicron
-
-snippet '`P ' "Pi" riA
-\Pi
-endsnippet
-
-# skip Rho
-
-snippet '`S ' "Sigma" riA
-\Sigma
-endsnippet
-
-# skip Tau
-# skip Upsilon
-
-snippet '`F ' "Phi" riA
-\Phi
-endsnippet
-
-# skip Xi
-
-snippet '`I ' "Psi" riA
-\Psi
-endsnippet
-
-snippet '`W ' "Omega" riA
-\Omega
+context "math()"
+snippet '\\(p?ddv)' "second diff" ir
+\\`!p snip.rv = match.group(1)`{$1}{$2}{$3}$0
 endsnippet
