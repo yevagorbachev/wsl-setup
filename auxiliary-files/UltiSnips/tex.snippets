@@ -61,7 +61,7 @@ endsnippet
 
 # MATH FORMATTING
 context "math()"
-snippet '((\\[a-zA-Z]+)?(?<!\\)[a-zA-Z](\{(\\[a-zA-Z]+)?[a-zA-Z]\})?)(ddot|dot|vec|hat)' "suffixes" rA 
+snippet '((\\[a-zA-Z]+)?(?<!\\)[a-zA-Z](\{(\\[a-zA-Z]+)?[a-zA-Z]\})?)(ddot|dot|vec|hat)' "suffixes" rA
 \\`!p snip.rv = match.group(5)`{`!p snip.rv = match.group(1)`}
 endsnippet
 
@@ -92,15 +92,20 @@ endsnippet
 # OPERATIONS
 
 context "math()"
-priority 1
-snippet // "Fraction basic" iA
-\frac{$1}{$2}$0
-endsnippet
-
-context "math()"
-priority 2
-snippet '(\{?)(\\?[a-zA-Z0-9{}_\^]+)//' "Fraction advanced" wrA 
-`!p snip.rv = match.group(1)`\frac{`!p snip.rv = match.group(2)`}{$1}$0
+snippet '(^.*)//' "Fraction" wrA
+`!p
+argument = match.group(1)
+i = len(argument) - 1
+depth = 0
+while i:
+	if argument[i] in "}])":
+		depth += 1
+	elif argument[i] in "{[(":
+		depth -= 1
+	if depth < 0 or (depth == 0 and argument[i] in ' +-'):
+		break
+	i -= 1
+snip.rv = argument[:i+1] + '\\frac{%s}{' % argument[i+1:]`$1}$0
 endsnippet
 
 context "math()"
