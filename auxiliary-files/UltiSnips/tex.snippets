@@ -147,3 +147,22 @@ context "math()"
 snippet '\\(p?ddv)' "second diff" ir
 \\`!p snip.rv = match.group(1)`{$1}{$2}{$3}$0
 endsnippet
+
+# PICTURES
+snippet pic "picture"
+\begin{picture}(${1:size})(${2:offset})
+	$3
+\end{picture}$0
+endsnippet
+
+snippet \put "put"
+\put(${1:origin}){${2:content}}
+endsnippet
+
+snippet \line "line"
+\put(${1:origin}){\line(${2:basis}){${3:scale}}}$0
+endsnippet
+
+snippet \circle "circle" 
+\put(${1:origin}){\circle(${2:radius})}$0
+endsnippet

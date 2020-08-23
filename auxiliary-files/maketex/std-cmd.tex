@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage[shortlabels]{enumitem}
+\usepackage{siunitx, amsmath, amssymb, setspace, xparse, physics} % symbols and operators
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+% Symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\La}{\mathcal{L}}
+
+% Operators
+\DeclareMathOperator{\cis}{cis}
+
+% look nicer than default commands with scaled brackets
+\renewcommand{\angle}[1]{\langle#1\rangle}
+\newcommand{\Angle}[1]{\left<#1\right>}
+\renewcommand{\bra}[1]{\langle#1}
+\renewcommand{\ket}[1]{|#1\rangle}
+
+% physics package annoyances
+\renewcommand{\vec}[1]{\vb{#1}}
+\renewcommand{\dv}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\dt}[1]{\dv{}{#1}}
+\newcommand{\ddv}[2]{\frac{\dd^{2} #1}{\dd #2^{2}}}
+\newcommand{\ddt}[1]{\ddv{}{#1}}
+\renewcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdt}[1]{\pdv{}{#1}}
+\newcommand{\pddv}[3]{\frac{\partial^{2} #1}{\partial #2\partial #3}}

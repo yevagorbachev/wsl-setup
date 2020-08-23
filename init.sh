@@ -2,6 +2,7 @@
 sudo apt clean
 sudo apt update
 sudo apt upgrade -y
+sudo apt-get install tree -y
 sudo apt-get install python3.7 -y
 sudo apt-get install python3-pip -y
 sudo apt-get install python3-venv -y

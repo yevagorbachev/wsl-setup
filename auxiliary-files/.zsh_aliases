@@ -1,11 +1,18 @@
 WINDOWS="/mnt/c"
 WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
-REPOS="$WINUSER/Documents/repos"
+REPOS="$WINUSER/Data/repos"
+DOCS="$WINUSER/OneDrive\\ -\\ rit.edu/Documents"
 
 alias python="python3"
 alias pip="pip3"
 alias config="vim ~/.zshrc"
 alias aliases="vim ~/.zsh_aliases"
+
+function maketex {
+	cp ~/wsl-setup/auxiliary-files/maketex/* .
+	mv texfile.tex $1'.tex'
+	sed 's/{texfile}/'$1'\.tex/g' makefile -i
+}
 
 function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
