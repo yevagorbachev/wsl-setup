@@ -10,7 +10,9 @@ function! TeXIndent(lnum)
 	let line = getline(a:lnum)
 	
 	" sections have hardcoded indentation; environments are always subordinate to sections
-	if prev =~ '^\s*\\section'
+	if prev =~ '{document}'
+		return 0
+	elseif prev =~ '^\s*\\section'
 		return 1
 	elseif prev =~ '^\s*\\subsection'
 		return 2
