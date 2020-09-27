@@ -4,6 +4,7 @@ set nu
 highlight LineNr ctermfg=grey
 set tabstop=4
 set shiftwidth=4
+set regexpengine=1
 
 let g:tex_flavor = "latex"
 

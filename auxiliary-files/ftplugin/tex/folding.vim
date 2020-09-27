@@ -6,7 +6,9 @@ setlocal foldcolumn=4
 function! SectionFold(lnum)
 	let line = getline(a:lnum)
 	
-	if line =~ '\\section'
+	if line =~ '{document}'
+		return "0"
+	elseif line =~ '\\section'
 		return ">1"
 	elseif line =~ '\\subsection'
 		return ">2"
@@ -14,7 +16,7 @@ function! SectionFold(lnum)
 		return ">3"
 	elseif line =~ '\\\(pagebreak\|appendix\)'
 		return "0"
-	elseif line =~ '{\(document\|equation\|split\)}'
+	elseif line =~ '{\(equation\|split\)}'
 		return "="
 	elseif line =~ '\\begin{\w\+}'
 	   return "a1"	
