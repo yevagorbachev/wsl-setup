@@ -32,6 +32,19 @@ snippet '\\begin{(\w+)}' "begin/end" r
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
+snippet 'ENUM(\d+)?' "enumerate" r
+\begin{enumerate}[$1]
+	`!p snip.rv = (int(match.group(1)) if match.group(1) else 1) * '\item '`
+\end{enumerate}$0
+endsnippet
+
+snippet 'TAB(\d+)?' "tabular" r
+\begin{tabular}{|`!p snip.rv = (int(match.group(1)) if match.group(1) else 1) * 'c|'`}
+	\hline
+	`!p snip.rv = (int(match.group(1)) - 1 if match.group(1) else 1) * '& '` \\\\
+\end{tabular}
+endsnippet
+
 snippet tem "Text emphasis"
 \emph{$1}$0
 endsnippet
@@ -60,7 +73,7 @@ snippet $ft "footnote" iA
 endsnippet
 
 # [[[ MATH FORMATTING
-snippet '^(.*)(ddot|dot|vec|hat)' "suffixes advanced" wr
+snippet '^(.*)(dot|ddot|vec|hat)' "suffixes advanced" wr
 `!p
 depth = 0
 seek = len(match.group(1)) - 1
@@ -96,14 +109,10 @@ snip.rv = line[:save] + '\\' + match.group(2) + '{' + line[save:] + '}'
 endsnippet
 
 context "math()"
-snippet __ "Subscript" iA
-_{$1}$0
+snippet '(\^|_)(\\?[\-a-zA-Z0-9])' "Script" irA
+`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2)`$1}$0
 endsnippet
 
-context "math()"
-snippet ^^ "Superscript" iA
-^{$1}$0
-endsnippet
 
 snippet \9 "Inline equation" iA
 \($1\)$0
@@ -179,14 +188,13 @@ snippet '\\(p?ddv)' "second diff" ir
 \\`!p snip.rv = match.group(1)`{$1}{$2}{$3}$0
 endsnippet
 
+
 # [[[ PICTURES
 snippet enumbox "Centered appropriately aligned minipage for enum items" 
-\hfil \adjustbox{valign=t}{\begin{minipage}{5cm}
-	$1
-\end{minipage}} \hfil$0
+\hfil \adjustbox{valign=t}{$1} \hfil$0
 endsnippet
 
-snippet boxpicture "Box with size"
+snippet boxpicture "Box with size" i
 \fbox{\begin{tikzpicture}
 	% setup
 	\node (llCorner) at (-${1:half width},-${2:half height}) {};
@@ -196,13 +204,14 @@ snippet boxpicture "Box with size"
 \end{tikzpicture}}$0
 endsnippet
 
-snippet freebody "Free-body diagram base" 
+snippet freebody "Free-body diagram base" i
 \fbox{\begin{tikzpicture}
+	\small
 	% setup
 	\node (llCorner) at (-${1:half width},-${2:half height}) {};
 	\node (urCorner) at ($1,$2) {};
 	% coordinate frame(s)
-	\node (coords) at (-2.2,-1.7) {};
+	\node[above right] (coords) at (llCorner) {};
 	\draw[->] (coords.center) -- ++(90:0.7) node[above] {\(y,\hat{j}\)};
 	\draw[->] (coords.center) -- ++(0:0.7) node[right] {\(x,\hat{i}\)};
 	% body
@@ -212,19 +221,29 @@ snippet freebody "Free-body diagram base"
 \end{tikzpicture}}$0
 endsnippet
 
-snippet \line "line" A
+snippet \LINE "line" A
 \draw (${1:start}) -- (${2:end})$0;
 endsnippet
 
-snippet \arc "arc" A
+snippet \ARC "arc" A
 \draw (${1:center}) ++ (${2:start}:${4:radius}) arc ($2:${3:end}:$4)$0;
 endsnippet
 
-snippet \force "force" A
+snippet \VECT "arrow" A
+\draw[->] (${1:start}) -- ++(${2:end});
+endsnippet
+
+snippet \FORCE "force" A
 \draw[->] (body.center) -- ++(${1:angle}:${2:length}) node[${3:offset}] {${4:label}};$0
 endsnippet
 
-snippet forces "Adding forces..." 
+# Assignment specific
+
+snippet ANS "answer" i
+\fbox{$1\( \Si{$2}\)}$0
+endsnippet
+
+snippet ADDFORCES "Adding forces..." 
 Adding forces,
 	\[\Sigma F_{x} = $1\]
 	\[\Sigma F_{y} = $2\]
