@@ -27,3 +27,7 @@ cp ~/wsl-setup/auxiliary-files/.vimrc ~/
 
 cp ~/wsl-setup/auxiliary-files/UltiSnips ~/.vim/ -r
 cp ~/wsl-setup/auxiliary-files/ftplugin ~/.vim/ -r
+
+touch ~/.toggl_token
+touch ~/.toggl_wid
+

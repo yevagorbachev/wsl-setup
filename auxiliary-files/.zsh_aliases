@@ -17,3 +17,9 @@ function maketex {
 function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
 }
+
+function toggl-get {
+	toggl_token=$(cat ~/.toggl_token)
+	echo $toggl_token
+	curl -v -u $toggl_token':api_token' -X GET 'https://api.track.toggl.com/api/v8/'$1 | python -m json.tool
+}
