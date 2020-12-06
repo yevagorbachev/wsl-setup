@@ -30,4 +30,4 @@ cp ~/wsl-setup/auxiliary-files/ftplugin ~/.vim/ -r
 
 touch ~/.toggl_token
 touch ~/.toggl_wid
-
+echo "REMEMBER TO UPDATE ~/.toggl_token"
