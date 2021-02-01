@@ -3,13 +3,11 @@
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{adjustbox}
 \usepackage[shortlabels]{enumitem}
-\usepackage{siunitx, xparse, physics} % symbols and operators
+\usepackage{siunitx, amsmath, amssymb} % symbols and operators
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em}
-% pictures
-\setlength{\unitlength}{1cm}
-\thicklines
+
 % Symbols
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -20,20 +18,18 @@
 
 % Operators
 \DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\dd}{d}
 
 % look nicer than default commands with scaled brackets
 \renewcommand{\angle}[1]{\langle#1\rangle}
 \newcommand{\Angle}[1]{\left<#1\right>}
-\renewcommand{\bra}[1]{\langle#1}
-\renewcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1}
+\newcommand{\ket}[1]{|#1\rangle}
 \newcommand{\Si}[1]{\,\si{#1}\,}
 
-% physics package annoyances
-\renewcommand{\vec}[1]{\vb{#1}}
-\renewcommand{\dv}[2]{\frac{\dd #1}{\dd #2}}
-\newcommand{\dt}[1]{\dv{}{#1}}
-\newcommand{\ddv}[2]{\frac{\dd^{2} #1}{\dd #2^{2}}}
-\newcommand{\ddt}[1]{\ddv{}{#1}}
-\renewcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\pdt}[1]{\pdv{}{#1}}
-\newcommand{\pddv}[3]{\frac{\partial^{2} #1}{\partial #2\partial #3}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\dv}[3][]{\frac{\dd ^{#1} #2}{\dd #3 ^{#1}}}
+\newcommand{\dt}[2][]{\dv[#1]{}{#2}}
+\newcommand{\pdv}[3][]{\frac{\partial ^{#1} #2}{\partial #3 ^{#1}}}
+\newcommand{\pdt}[2][]{\pdv[#1]{}{#2}}
+\newcommand{\pddv}[3]{\frac{\partial^{} #1}{\partial #2 \partial #3}}

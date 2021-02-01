@@ -45,33 +45,6 @@ snippet 'TAB(\d+)?' "tabular" r
 \end{tabular}
 endsnippet
 
-snippet tem "Text emphasis"
-\emph{$1}$0
-endsnippet
-
-snippet tbf "Text boldface"
-\textbf{$1}$0
-endsnippet
-
-snippet sct1 "section" iA 
-\section{$1}
-$0
-endsnippet
-
-snippet sct2 "subsection" iA 
-\subsection{$1}
-$0
-endsnippet
-
-snippet sct3 "subsubsection" iA
-\subsubsection{$1}
-$0
-endsnippet
-
-snippet $ft "footnote" iA
-\footnote{$1}$0
-endsnippet
-
 # [[[ MATH FORMATTING
 snippet '^(.*)(dot|ddot|vec|hat)' "suffixes advanced" wr
 `!p
@@ -149,28 +122,8 @@ snip.rv = argument[:i+1] + '\\frac{%s}{' % argument[i+1:]`$1}$0
 endsnippet
 
 context "math()"
-snippet '(int|oint)' "Integral" r
-\\`!p snip.rv = match.group(1)`_{$1}$2\dd{$3}$0
-endsnippet
-
-context "math()"
-snippet inflim "Infinite limit" iA
-\lim_{$1\to\infty}$0
-endsnippet
-
-context "math()"
-snippet infint "Infinite integral" iA
-\int_{-\infty}^{+\infty} $1\dd{$2}$0
-endsnippet
-
-context "math()"
-snippet $four "Fourier transform" A
-\int_{-\infty}^{+\infty} \frac{1}{2\pi\hbar} e^{\frac{i}{\hbar} $1} $2 \dd{$3} $0
-endsnippet
-
-context "math()"
-snippet !> "mapsto" iA
-\mapsto
+snippet int "Integral"
+\int_{$1}$2\dd{$3}$0
 endsnippet
 
 context "math()"
@@ -184,68 +137,6 @@ snippet '\\(p?dv)' "diff in numerator" ir
 endsnippet
 
 context "math()"
-snippet '\\(p?ddv)' "second diff" ir
-\\`!p snip.rv = match.group(1)`{$1}{$2}{$3}$0
-endsnippet
-
-
-# [[[ PICTURES
-snippet enumbox "Centered appropriately aligned minipage for enum items" 
-\hfil \adjustbox{valign=t}{$1} \hfil$0
-endsnippet
-
-snippet boxpicture "Box with size" i
-\fbox{\begin{tikzpicture}
-	% setup
-	\node (llCorner) at (-${1:half width},-${2:half height}) {};
-	\node (urCorner) at ($1,$2) {};
-	% contents
-	$3
-\end{tikzpicture}}$0
-endsnippet
-
-snippet freebody "Free-body diagram base" i
-\fbox{\begin{tikzpicture}
-	\small
-	% setup
-	\node (llCorner) at (-${1:half width},-${2:half height}) {};
-	\node (urCorner) at ($1,$2) {};
-	% coordinate frame(s)
-	\node[above right] (coords) at (llCorner) {};
-	\draw[->] (coords.center) -- ++(90:0.7) node[above] {\(y,\hat{j}\)};
-	\draw[->] (coords.center) -- ++(0:0.7) node[right] {\(x,\hat{i}\)};
-	% body
-	\node (body) at (0,0) {};
-	\filldraw (body) circle (2pt);
-	$3
-\end{tikzpicture}}$0
-endsnippet
-
-snippet \LINE "line" A
-\draw (${1:start}) -- (${2:end})$0;
-endsnippet
-
-snippet \ARC "arc" A
-\draw (${1:center}) ++ (${2:start}:${4:radius}) arc ($2:${3:end}:$4)$0;
-endsnippet
-
-snippet \VECT "arrow" A
-\draw[->] (${1:start}) -- ++(${2:end});
-endsnippet
-
-snippet \FORCE "force" A
-\draw[->] (body.center) -- ++(${1:angle}:${2:length}) node[${3:offset}] {${4:label}};$0
-endsnippet
-
-# Assignment specific
-
-snippet ANS "answer" i
-\fbox{$1\( \Si{$2}\)}$0
-endsnippet
-
-snippet ADDFORCES "Adding forces..." 
-Adding forces,
-	\[\Sigma F_{x} = $1\]
-	\[\Sigma F_{y} = $2\]
-$0
+snippet \pddv "second diff" i
+\pddv{$1}{$2}{$3}$0
 endsnippet
