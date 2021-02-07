@@ -10,6 +10,10 @@ let g:tex_flavor = "latex"
 
 call plug#begin('~/.vim/plugged')
 
+cnoreabbrev X w
+cnoreabbrev addsnips UltiSnipsAddFiletypes
+cnoreabbrev esnip UltiSnipsEdit
+
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
