@@ -15,7 +15,8 @@ sudo apt-get install zsh -y
 #oh-my-zsh
 yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 chsh -s /bin/zsh
-sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"gentoo\"/g' ~/.zshrc -i # set ZSH theme
+sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"afowler-custom\"/g' ~/.zshrc -i # set ZSH theme
+cp ~/wsl-setup/auxiliary-files/afowler-custom.zsh-theme ~/.oh-my-zsh/themes/ # update with my custom theme
 
 # set up aliases
 cp ~/wsl-setup/auxiliary-files/.zsh_aliases ~/
