@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "Copy configuration files from repo to system?" REPLY
+read -p "Copy configuration files from repo to system [Y/N]?" -n 1 REPLY
 if [[ $REPLY ~= ^[Yy]$ ]]
 then
 	cp ~/wsl-setup/auxiliary-files/.zsh_aliases ~/
