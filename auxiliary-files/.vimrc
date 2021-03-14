@@ -14,6 +14,10 @@ cnoreabbrev X w
 cnoreabbrev addsnips UltiSnipsAddFiletypes
 cnoreabbrev esnip UltiSnipsEdit
 
+nnoremap <space> za
+nnoremap <C-p> :set paste
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'

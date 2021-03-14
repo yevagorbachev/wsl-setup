@@ -31,8 +31,10 @@ function toggl-get {
 # POST request
 function toggl-post {
 	vim ~/.toggl_data.json # user edits data packet
+	wait $! # wait for user to finish editing
+	cat ~/.toggl_data.json
 	curl -S -u $(cat ~/.toggl_token)':api_token' -H "Content-Type: application/json" \
 		-X POST 'https://api.track.toggl.com/api/v8/'$1 \
-		-d $(cat ~/.toggl_data.json) | python -m json.tool
+		-d \'$(cat ~/.toggl_data.json)\' | python -m json.tool
 	> ~/.toggl_data.json # clear contents of data packet file
 }

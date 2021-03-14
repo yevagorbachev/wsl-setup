@@ -1,5 +1,6 @@
 #!/bin/bash
 read -p "Copy configuration files from system to repo? [y/n]: " -n 1 REPLY
+echo
 if [[ $REPLY =~ ^[Yy]$ ]];
 then
 	cp ~/.vim/ftplugin ~/wsl-setup/auxiliary-files/ -r
