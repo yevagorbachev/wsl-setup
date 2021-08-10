@@ -3,9 +3,8 @@ sudo apt clean
 sudo apt update
 sudo apt upgrade -y
 sudo apt-get install tree -y
-sudo apt-get install python3.7 -y
+sudo apt-get install python3 -y
 sudo apt-get install python3-pip -y
-sudo apt-get install python3-venv -y
 sudo apt-get install texlive-base -y
 sudo apt-get install texlive-science -y
 sudo apt-get install texlive-latex-extra -y
@@ -18,17 +17,20 @@ chsh -s /bin/zsh
 sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"afowler-custom\"/g' ~/.zshrc -i # set ZSH theme
 cp ~/wsl-setup/auxiliary-files/afowler-custom.zsh-theme ~/.oh-my-zsh/themes/ # update with my custom theme
 
-# set up aliases
-cp ~/wsl-setup/auxiliary-files/.zsh_aliases ~/
+# set up home dir
+cp ~/wsl-setup/configs/* ~/ -r
+
+# add aliases
 echo '. ~/.zsh_aliases' >> ~/.zshrc
 
 # VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp ~/wsl-setup/auxiliary-files/.vimrc ~/
+# Copy 
 
 cp ~/wsl-setup/auxiliary-files/UltiSnips ~/.vim/ -r
 cp ~/wsl-setup/auxiliary-files/ftplugin ~/.vim/ -r
 
-touch ~/.toggl_token
-touch ~/.toggl_wid
-echo "REMEMBER TO UPDATE ~/.toggl_token"
+# touch ~/.toggl_token
+# touch ~/.toggl_wid
+# echo "REMEMBER TO UPDATE ~/.toggl_token"
