@@ -1,0 +1,129 @@
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment():
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+    return x != '0' and x != '0'
+endglobal
+
+# [[[ TEXT FORMATTING
+
+snippet '\\begin{(\w+)}' "begin/end" r
+\begin{`!p snip.rv = match.group(1)`}
+	$0
+\end{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet 'ENUM(\d+)?' "enumerate" r
+\begin{enumerate}[$1]
+	`!p snip.rv = (int(match.group(1)) if match.group(1) else 1) * '\item '`
+\end{enumerate}$0
+endsnippet
+
+snippet 'TAB(\d+)?' "tabular" r
+\begin{tabular}{|`!p snip.rv = (int(match.group(1)) if match.group(1) else 1) * 'c|'`}
+	\hline
+	`!p snip.rv = (int(match.group(1)) - 1 if match.group(1) else 1) * '& '` \\\\
+\end{tabular}
+endsnippet
+
+# [[[ MATH FORMATTING
+context "math()"
+snippet '^(.*)(dot|ddot|vec|hat)' "suffixes advanced" wr
+`!p
+depth = 0
+seek = len(match.group(1)) - 1
+arg = 0
+line = match.group(1)
+
+ischar = lambda c: re.match('[a-zA-Z]', c)
+isopen = lambda c: c in '([{'
+isclos = lambda c: c in ')]}'
+
+if isclos(line[seek]):
+	depth -= 1
+	while depth and seek:
+		seek -= 1
+		if isopen(line[seek]):
+			depth += 1
+		elif isclos(line[seek]):
+			depth -= 1
+save = -1
+while seek:
+	seek -= 1
+	if ischar(line[seek]):
+		if not save:
+			save = seek
+	else:
+		if line[seek] == '\\':
+			save = seek
+		break
+	
+snip.rv = line[:save] + '\\' + match.group(2) + '{' + line[save:] + '}'
+
+`
+endsnippet
+
+context "math()"
+snippet '(\^|_)(\\?[\-a-zA-Z0-9])' "Script" wirA
+`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2)`$1}$0
+endsnippet
+
+
+snippet \9 "Inline equation" iA
+\($1\)$0
+endsnippet
+
+snippet '\\\[ ' "Aligned unlabeled equation" rA
+\[$1\]$0
+endsnippet
+
+snippet eqn "equation" A
+\begin{equation}\label{$1}
+	$2
+\end{equation}
+endsnippet
+
+# [[[ OPERATIONS
+
+context "math()"
+snippet '(^.*)//' "Fraction" wrA
+`!p
+argument = match.group(1)
+i = len(argument) - 1
+depth = 0
+while i:
+	if argument[i] in "}])":
+		depth += 1
+	elif argument[i] in "{[(":
+		depth -= 1
+	if depth < 0 or (depth == 0 and argument[i] in ' +-='):
+		break
+	i -= 1
+ 
+snip.rv = argument[:i+1] + '\\frac{%s}{' % argument[i+1:]`$1}$0
+endsnippet
+
+context "math()"
+snippet int "Integral" i
+\int_{$1}$2\dd{$3}$0
+endsnippet
+
+context "math()"
+snippet '\\(p?dt)' "solo diff" ir
+\\`!p snip.rv = match.group(1)`{$1}$0
+endsnippet
+
+context "math()"
+snippet '\\(p?dv)' "diff in numerator" ir
+\\`!p snip.rv = match.group(1)`{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet \pddv "second diff" i
+\pddv{$1}{$2}{$3}$0
+endsnippet
