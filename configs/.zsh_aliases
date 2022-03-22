@@ -2,13 +2,23 @@ WINDOWS="/mnt/c"
 WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
 REPOS="$WINUSER/Data/repos"
 DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\"" # needs to be run using eval cd
-LAUNCH=~/launch/2020-SPICA-Flight-Computer
 
 alias python="python3"
 alias pip="pip3"
 alias config="vim ~/.zshrc"
 alias aliases="vim ~/.zsh_aliases"
 alias update=". ~/.zshrc"
+
+alias mkae="sl"
+alias maek="sl"
+
+function cyntax {
+	gcc -fsyntax-only $1
+}
+
+function plotcrop {
+	pdfcrop -margin 0 $1 $1
+}
 
 # creates a tex project named $1
 function maketex {
