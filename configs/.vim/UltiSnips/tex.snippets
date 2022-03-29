@@ -71,7 +71,7 @@ snippet '^(.+)(dot|vec|hat)$' "suffixes advanced" wr
 depth = 0
 first = match.group(1)
 i = len(first) - 1
-while i:
+while i: # match delimeter groups
 	if first[i] in "}])":
 		depth += 1
 	elif first[i] in "{[(":
@@ -79,11 +79,11 @@ while i:
 	if depth <= 0:
 		break
 	i -= 1
-
-arg_re = re.compile(r"^(.*?)(\\\w+)")
+# i now is at the position of the matched open delimeter closest to the end
+arg_re = re.compile(r"^(.*?)(\\\w+)") # match "(stuff)\(command)"
 sm = arg_re.match(first[:i])
-if not sm:
-	snip.rv = match.string
+if not sm: # the string doesn't exactly match "\command{arguments}", do nothing.
+	snip.rv = match.string # do nothing, just to be safe
 else:
 	snip.rv = f"{sm.group(1)}\\{match.group(2)}{{{sm.group(2)}{first[i:]}}}"
 `$0
