@@ -12,7 +12,7 @@ endglobal
 
 # [[[ ENVIRONMENTS
 
-snippet '\\begin{(\w+)}' "begin/end" r
+snippet '\\begin{(\w+\*?)}' "begin/end" r
 \begin{`!p snip.rv = match.group(1)`}
 	$0
 \end{`!p snip.rv = match.group(1)`}
@@ -49,7 +49,7 @@ endsnippet
 
 snippet ULAR "tabular" 
 \begin{tabular}{${1:colspec}}
-	\hline $2 \\
+	\hline $2 \\\\
 	\hline
 \end{tabular}$0
 endsnippet
@@ -118,7 +118,7 @@ while i:
 		depth += 1
 	elif argument[i] in "{[(":
 		depth -= 1
-	if depth < 0 or (depth == 0 and argument[i] in ' ='):
+	if depth < 0 or (depth == 0 and argument[i] in ' =\t'):
 		break
 	i -= 1
  
