@@ -5,7 +5,8 @@ highlight LineNr ctermfg=grey
 set tabstop=4
 set shiftwidth=4
 set regexpengine=1
-
+set textwidth=80
+set tags=~/repos/NIGEL-Flight-Computer/tags
 let g:tex_flavor = "latex"
 
 call plug#begin('~/.vim/plugged')

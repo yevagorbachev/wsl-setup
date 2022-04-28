@@ -1,12 +1,13 @@
 \documentclass{article}
+\usepackage{siunitx, amsmath, amssymb, adjustbox, graphicx, float, hyperref} 
 \usepackage[utf8]{inputenc}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
-\usepackage{adjustbox}
 \usepackage[shortlabels]{enumitem}
-\usepackage{siunitx, amsmath, amssymb} % symbols and operators
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em}
+\setlength{\tabcolsep}{0.5em}
+\renewcommand{\arraystretch}{1.5}
 
 % Symbols
 \newcommand{\N}{\mathbb{N}}
@@ -27,7 +28,7 @@
 \newcommand{\Angle}[1]{\left<#1\right>}
 \newcommand{\bra}[1]{\langle#1}
 \newcommand{\ket}[1]{|#1\rangle}
-\newcommand{\Si}[1]{\,\si{#1}\,}
+\newcommand{\Si}[1]{\,\si{#1}}
 
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\dv}[3][]{\frac{\dd ^{#1} #2}{\dd #3 ^{#1}}}

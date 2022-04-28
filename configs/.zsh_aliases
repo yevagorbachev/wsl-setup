@@ -1,8 +1,8 @@
 WINDOWS="/mnt/c"
 WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
 REPOS="$WINUSER/Data/repos"
-DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\"" # needs to be run using eval cd
-LAUNCH=~/launch/2020-SPICA-Flight-Computer
+DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\""
+# cd $DOCS needs to be eval for some reason
 
 alias python="python3"
 alias pip="pip3"
@@ -10,8 +10,31 @@ alias config="vim ~/.zshrc"
 alias aliases="vim ~/.zsh_aliases"
 alias update=". ~/.zshrc"
 
-# creates a tex project named $1
-function maketex {
+alias mkae="sl" # funny
+alias maek="sl" # also funny
+alias dor="sl" # also also funny
+
+function cyntax { # syntax-check c file
+	gcc -fsyntax-only $1
+}
+
+function clean-sub { # make clean for immediate subdirectories
+	for dir in */; do
+		make -C $dir clean
+	done
+}
+
+function plotcrop { # crop in-place with no margin
+	pdfcrop -margin 0 $1 $1
+}
+
+function plotcrop-all { # plotcrop all .pdf in cwd
+	for file in *.pdf; do
+		plotcrop $file
+	done
+}
+
+function maketex { # create tex project named $1
 	cp ~/wsl-setup/auxiliary-files/maketex/* .
 	mv texfile.tex $1'.tex'
 	sed 's/{texfile}/'$1'\.tex/g' makefile -i
@@ -22,7 +45,20 @@ function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
 }
 
-# testing toggl API
+touch ~/.projects
+
+# set current projects
+# using ! as sed delimiter to not conflict with "/" in paths
+function project-set {
+	sed -i "${1}s!.*!$(pwd)!" ~/.projects
+}
+
+# cd to project
+function project {
+	eval cd \"$(sed -n "$1{p;q}" ~/.projects)\"
+}
+
+# testing toggl API (deprecated)
 # GET request
 function toggl-get { 
 	curl -S -u $(cat ~/.toggl_token)':api_token' 'https:/api.track.toggl.com/api/v8/'$1 | python -m json.tool
