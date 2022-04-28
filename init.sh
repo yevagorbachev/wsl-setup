@@ -18,18 +18,13 @@ sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"afowler-custom\"/g' ~/.zshrc -i # set ZS
 cp ~/wsl-setup/auxiliary-files/afowler-custom.zsh-theme ~/.oh-my-zsh/themes/ # update with my custom theme
 
 # set up home dir
-cp ~/wsl-setup/configs/* ~/ -r
+cp ~/wsl-setup/configs/. ~/ -r
 
 # add aliases
 echo '. ~/.zsh_aliases' >> ~/.zshrc
 
 # VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cp ~/wsl-setup/auxiliary-files/.vimrc ~/
-# Copy 
-
-cp ~/wsl-setup/auxiliary-files/UltiSnips ~/.vim/ -r
-cp ~/wsl-setup/auxiliary-files/ftplugin ~/.vim/ -r
 
 # touch ~/.toggl_token
 # touch ~/.toggl_wid
