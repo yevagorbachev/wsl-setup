@@ -7,3 +7,6 @@ cat ~/.ssh/id_rsa.pub
 # configure GitHub details
 git config --global user.email $2
 git config --global user.name $3
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+
