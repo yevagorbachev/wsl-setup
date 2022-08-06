@@ -32,4 +32,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lervag/vimtex'
 let g:vimtex_compiler_enabled=0
 
+Plug 'vim-pandoc/vim-rmarkdown'
+
 call plug#end()
+
+au BufNewFile,BufRead *.cls set filetype=tex
+au BufNewFile,BufRead *.sty set filetype=tex

@@ -12,8 +12,8 @@ endglobal
 
 # [[[ ENVIRONMENTS
 
-snippet '\\begin{(\w+\*?)}' "begin/end" r
-\begin{`!p snip.rv = match.group(1)`}
+snippet '\\begin{(\w+\*?)}(.*$)' "begin/end" r
+\begin{`!p snip.rv = match.group(1)`}`!p snip.rv = match.group(2)`
 	$0
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
