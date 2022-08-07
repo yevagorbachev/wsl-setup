@@ -1,15 +1,15 @@
 colo desert
 syntax on
-set nu
+
 highlight LineNr ctermfg=grey
+
+set rnu
+set nu
+set scrolloff=15
 set tabstop=4
 set shiftwidth=4
 set regexpengine=1
 set textwidth=80
-set tags=~/repos/NIGEL-Flight-Computer/tags
-let g:tex_flavor = "latex"
-
-call plug#begin('~/.vim/plugged')
 
 cnoreabbrev X w
 cnoreabbrev addsnips UltiSnipsAddFiletypes
@@ -19,6 +19,13 @@ nnoremap <space> za
 nnoremap <C-p> :set paste
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
+
+au BufNewFile,BufRead *.cls set filetype=tex
+au BufNewFile,BufRead *.sty set filetype=tex
+
+call plug#begin('~/.vim/plugged')
+
+let g:tex_flavor = "latex"
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -35,6 +42,3 @@ let g:vimtex_compiler_enabled=0
 Plug 'vim-pandoc/vim-rmarkdown'
 
 call plug#end()
-
-au BufNewFile,BufRead *.cls set filetype=tex
-au BufNewFile,BufRead *.sty set filetype=tex
