@@ -1,1 +1,1 @@
-setlocal indentexpr=foldlevel(v:lnum)
+setlocal indentexpr=cindent(v:lnum)
