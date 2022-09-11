@@ -1,6 +1,6 @@
-" setlocal autoindent
+setlocal autoindent
 " setlocal indentexpr=TeXIndent(v:lnum)
-setlocal indentexpr=foldlevel(v:lnum)
+setlocal indentexpr=TeXIndent(v:lnum)
 
 function! TeXIndent(lnum)
 	if a:lnum == 0

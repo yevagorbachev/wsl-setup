@@ -27,10 +27,6 @@ function! SectionFold(lnum)
 	endif
 endfunction
 
-function! CountOccurences(line, char)
-	return count(str2list(a:line), char2nr(a:char))
-endfunction
-
 function! SectionText()
 	let snum = v:foldstart
 	let enum = v:foldend
