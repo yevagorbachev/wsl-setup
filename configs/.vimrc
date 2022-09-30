@@ -19,6 +19,7 @@ nnoremap <space> za
 nnoremap <C-p> :set paste
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
+nnoremap <CR> i<CR><Esc>
 
 au BufNewFile,BufRead *.cls set filetype=tex
 au BufNewFile,BufRead *.sty set filetype=tex
@@ -32,7 +33,7 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetsDir="/home/yeva/.vim/UltiSnips"
 let g:UltiSnipsSpippetDirectories=["/home/yeva/.vim/UltiSnips"]
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="horizontal"
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'lervag/vimtex'
