@@ -6,8 +6,6 @@ DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\""
 
 alias python="python3"
 alias pip="pip3"
-alias config="vim ~/.zshrc"
-alias aliases="vim ~/.zsh_aliases"
 alias update=". ~/.zshrc"
 
 alias mkae="sl" # funny
@@ -47,30 +45,12 @@ function theme {
 
 touch ~/.projects
 
-# set current projects
-# using ! as sed delimiter to not conflict with "/" in paths
+# set project number
 function project-set {
-	sed -i "${1}s!.*!$(pwd)!" ~/.projects
+	sed -i "${1} i `pwd`" ~/.projects
 }
 
-# cd to project
+# cd to project number
 function project {
-	eval cd \"$(sed -n "$1{p;q}" ~/.projects)\"
-}
-
-# testing toggl API (deprecated)
-# GET request
-function toggl-get { 
-	curl -S -u $(cat ~/.toggl_token)':api_token' 'https:/api.track.toggl.com/api/v8/'$1 | python -m json.tool
-}
-
-# POST request
-function toggl-post {
-	vim ~/.toggl_data.json # user edits data packet
-	wait $! # wait for user to finish editing
-	cat ~/.toggl_data.json
-	curl -S -u $(cat ~/.toggl_token)':api_token' -H "Content-Type: application/json" \
-		-X POST 'https://api.track.toggl.com/api/v8/'$1 \
-		-d \'$(cat ~/.toggl_data.json)\' | python -m json.tool
-	> ~/.toggl_data.json # clear contents of data packet file
+	eval cd \"$(awk "NR==${1}" ~/.projects)\"
 }
