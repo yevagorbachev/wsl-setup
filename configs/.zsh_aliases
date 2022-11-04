@@ -54,3 +54,4 @@ function project-set {
 function project {
 	eval cd \"$(awk "NR==${1}" ~/.projects)\"
 }
+

@@ -9,4 +9,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "---------Select .vim subdirectories----------"
 	cp ~/.vim/UltiSnips ~/wsl-setup/configs/.vim -rv
 	cp ~/.vim/ftplugin ~/wsl-setup/configs/.vim -rv
+	cp ~/.vim/indent ~/wsl-setup/configs/.vim -rv
+	cp ~/.vim/syntax ~/wsl-setup/configs/.vim -rv
 fi
