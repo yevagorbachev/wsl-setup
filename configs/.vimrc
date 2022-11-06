@@ -5,15 +5,16 @@ highlight LineNr ctermfg=grey
 
 set rnu
 set nu
-set scrolloff=15
+set hlsearch
+set scrolloff=10
 set tabstop=4
 set shiftwidth=4
 set regexpengine=1
-set textwidth=80
+set textwidth=120
 
 cnoreabbrev X w
-cnoreabbrev addsnips UltiSnipsAddFiletypes
-cnoreabbrev esnip UltiSnipsEdit
+" cnoreabbrev addsnips UltiSnipsAddFiletypes
+" cnoreabbrev esnip UltiSnipsEdit
 
 nnoremap <space> za
 nnoremap <C-p> :set paste
