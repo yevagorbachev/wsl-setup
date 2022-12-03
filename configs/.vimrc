@@ -38,5 +38,6 @@ let g:UltiSnipsEditSplit="horizontal"
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'lervag/vimtex'
+Plug 'tpope/vim-surround'
 let g:vimtex_compiler_enabled=0
 call plug#end()
