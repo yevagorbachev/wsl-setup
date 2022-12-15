@@ -47,11 +47,14 @@ touch ~/.projects
 
 # set project number
 function project-set {
+	echo "Project ${1} set to $(pwd)"
 	sed -i "${1} i `pwd`" ~/.projects
 }
 
 # cd to project number
 function project {
-	eval cd \"$(awk "NR==${1}" ~/.projects)\"
+	project_dir=$(awk "NR==${1}" ~/.projects)
+	echo "Project ${1}: $project_dir"
+	eval cd \"$project_dir\"
 }
 
