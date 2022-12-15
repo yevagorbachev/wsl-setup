@@ -57,7 +57,7 @@ syn match matlabTransposeOperator	"[])a-zA-Z0-9.]'"lc=1
 syn match matlabSemicolon		";"
 
 syn match matlabComment			"%.*$"	contains=matlabTodo,matlabTab
-syn region matlabBlockComment        start=+%{+    end=+%}+ contains=matlabBlockComment
+syn region matlabBlockComment        start="^%{\s*$"    end="^%}\s*$" contains=matlabBlockComment
 
 
 " trigonometric
@@ -65,7 +65,7 @@ syn keyword matlabFunc 			acos acosd acosh acot acotd acoth acsc acscd acsch ase
 syn keyword matlabFunc 			atan atan2 atan2d atand atanh cos cosd cosh cot cotd coth csc cscd csch hypot sec secd
 syn keyword matlabFunc 			sech sin sind sinh tan tand tanh
 " exponential
-syn keyword matlabFunc 			exp expm1 log log10 log1p log2 nextpow2 nthroot pow2 reallog realpow realsqrt sqrt
+syn keyword matlabFunc 			exp expm expm1 log log10 log1p log2 nextpow2 nthroot pow2 reallog realpow realsqrt sqrt
 " Complex
 syn keyword matlabFunc 			abs angle complex conj cplxpair  imag real sign unwrap
 " Rounding and Remainder
