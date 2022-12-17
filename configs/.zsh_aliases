@@ -1,5 +1,7 @@
 WINDOWS="/mnt/c"
 WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
+WINDOCS="$WINUSER/OneDrive/Documents"
+MATLAB="$WINDOCS/MATLAB"
 REPOS="$WINUSER/Data/repos"
 DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\""
 # cd $DOCS needs to be eval for some reason
