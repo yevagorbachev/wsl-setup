@@ -19,5 +19,8 @@ cp ~/wsl-setup/configs/. ~/ -r
 # add aliases
 echo '. ~/.zsh_aliases' >> ~/.zshrc
 
+# create project directory
+mkdir ~/.projects
+
 # VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

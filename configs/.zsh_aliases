@@ -45,18 +45,14 @@ function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
 }
 
-touch ~/.projects
-
 # set project number
 function project-set {
-	echo "Project ${1} set to $(pwd)"
-	sed -i "${1} i `pwd`" ~/.projects
+	pwd > ~/.projects/$1
 }
 
-# cd to project number
 function project {
-	project_dir=$(awk "NR==${1}" ~/.projects)
-	echo "Project ${1}: $project_dir"
-	eval cd \"$project_dir\"
+	p=$(cat ~/.projects/$1)
+	echo $p
+	eval cd \"$p\"
 }
 
