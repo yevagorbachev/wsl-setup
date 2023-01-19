@@ -45,14 +45,29 @@ function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
 }
 
-# set project number
+# add project entry
 function project-set {
+	if [[ -f ~/.projects/$1 ]]; then
+		read -q "reply?Overwrite project \"$1\" [y/n]: "
+		echo # add a newline so it doesn't look weird
+		if [[ $reply != "y" ]]; then
+			return 0
+		fi
+	fi
+
 	pwd > ~/.projects/$1
+	
+	if [[ $(cat ~/.projects/$1) == $(pwd) ]]; then
+		echo "Project $1 set to `pwd`"
+	else
+		echo "Failed to set project $1"
+		return 1
+	fi
 }
+
 
 function project {
 	p=$(cat ~/.projects/$1)
 	echo $p
 	eval cd \"$p\"
 }
-
