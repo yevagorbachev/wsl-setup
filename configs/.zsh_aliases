@@ -1,9 +1,8 @@
 WINDOWS="/mnt/c"
 WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
-WINDOCS="$WINUSER/OneDrive/Documents"
-MATLAB="$WINDOCS/MATLAB"
-REPOS="$WINUSER/Data/repos"
 DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\""
+
+PROJECTS=~/.projects
 # cd $DOCS needs to be eval for some reason
 
 alias python="python3"
@@ -41,33 +40,40 @@ function maketex { # create tex project named $1
 }
 
 # use sed -i to change zsh theme
+# might deprecate
 function theme {
 	sed 's/ZSH_THEME=\"[a-z]*\"/ZSH_THEME=\"'$1'\"/g' ~/.zshrc -i
 }
 
 # add project entry
 function project-set {
-	if [[ -f ~/.projects/$1 ]]; then
-		read -q "reply?Overwrite project \"$1\" [y/n]: "
-		echo # add a newline so it doesn't look weird
-		if [[ $reply != "y" ]]; then
-			return 0
-		fi
-	fi
+        newp=$PROJECTS/$1
 
-	pwd > ~/.projects/$1
-	
-	if [[ $(cat ~/.projects/$1) == $(pwd) ]]; then
-		echo "Project $1 set to `pwd`"
-	else
-		echo "Failed to set project $1"
-		return 1
-	fi
+        if [[ -f $newp ]];
+        then
+                read -q "reply?Overwrite project \"$1\" [y/n]: "
+                echo # add a newline so it doesn't look weird
+                if [[ $reply != "y" ]]; then
+                        return 0
+                fi
+        fi
+
+        pwd > $newp
+
 }
 
 
 function project {
-	p=$(cat ~/.projects/$1)
-	echo $p
-	eval cd \"$p\"
+        eval cd \"`cat $PROJECTS/$1`\"
+}
+
+function project-list {
+        for file in $PROJECTS/*;
+        do
+                echo "Project \"`basename $file`\": \n\t`cat $file`"
+        done
+}
+
+function project-rm {
+        rm $PROJECTS/$1
 }
