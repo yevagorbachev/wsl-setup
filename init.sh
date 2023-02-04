@@ -3,9 +3,9 @@ sudo apt clean
 sudo apt update
 sudo apt upgrade -y
 
-packages="tree python3 python3-pop texlive-base texlive-science
+packages="tree python3 python3-pip texlive-base texlive-science
 texlive-extra-utils texlive-latex-extra latexmk sl gdb zsh"
-sudo apt-get install $(packages) -y
+sudo apt-get install $packages -y
 
 #oh-my-zsh
 yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
