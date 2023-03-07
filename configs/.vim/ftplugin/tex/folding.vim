@@ -14,7 +14,7 @@ function! SectionFold(lnum)
 		return ">2"
 	elseif line =~ '\\subsubsection'
 		return ">3"
-	elseif line =~ '\\\(pagebreak\|appendix\)'
+	elseif line =~ '\\appendix'
 		return "0"
 	elseif line =~ '{\(equation\|split\)}'
 		return "="

@@ -1,5 +1,7 @@
 WINDOWS="/mnt/c"
-WINUSER="$WINDOWS/Users/yevge" # change user as appropriate
+# change user as appropriate
+WINUSER="\"$WINDOWS/Users/Yevgeniy Gorbachev\"" 
+
 DOCS="\"$WINUSER/OneDrive - rit.edu/Documents\""
 
 PROJECTS=~/.projects

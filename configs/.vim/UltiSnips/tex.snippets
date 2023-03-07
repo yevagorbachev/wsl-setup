@@ -12,18 +12,31 @@ endglobal
 
 # [[[ ENVIRONMENTS
 
-snippet '\\begin{(\w+\*?)}(.*$)' "begin/end" r
+snippet '\\begin{(\w+\*?)}\s*$' "begin/end raw"  r
+\begin{`!p snip.rv = match.group(1)`}
+	$0
+\end{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet '\\begin{(\w+\*?)}(\[.*\])$' "begin/end bracket" r
+\begin{`!p snip.rv = match.group(1)`}`!p snip.rv = match.group(2) if match.group(2) else ""`
+	$0
+\end{`!p snip.rv = match.group(1)`}
+endsnippet
+
+snippet '\\begin{(\w+\*?)}({.*})$' "begin/end brace" r
 \begin{`!p snip.rv = match.group(1)`}`!p snip.rv = match.group(2)`
 	$0
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
+
 snippet FIG "figure"
-\begin{figure}
+\begin{figure}[${1:H}]
 	\centering
-	${3:body}
-	\caption{$1}
-	\label{fig:$2}
+	\includegraphics[${4:dimension}]{${5:path}}
+	\caption{${2:caption}}
+	\label{fig:${3:label}}
 \end{figure}
 $0
 endsnippet
@@ -39,11 +52,11 @@ $0
 endsnippet
 
 snippet TAB "table" 
-\begin{table}
+\begin{table}[${1:H}]
 	\centering
-	${3:body}
-	\caption{$1}
-	\label{tbl:$2}
+	\caption{${2:caption}}
+	${4:ULAR}
+	\label{tbl:${3:label}}
 \end{table}$0
 endsnippet
 
@@ -59,14 +72,14 @@ endsnippet
 # captures single chars or commands into a hat
 context "math()"
 priority 2
-snippet '(\\\w+|\w)(dot|vec|hat)' "suffixes basic" wr
+snippet '(\\\w+|\w)(dot|vec|hat|bar)' "suffixes basic" wr
 `!p snip.rv = f"\\{match.group(2)}{{{match.group(1)}}}"`$0
 endsnippet
 
 # captures commands with arguments (other hats) into a hat
 context "math()"
 priority 1
-snippet '^(.+)(dot|vec|hat)$' "suffixes advanced" wr
+snippet '^(.+)(dot|vec|hat|bar)' "suffixes advanced" wr
 `!p
 depth = 0
 first = match.group(1)
@@ -147,4 +160,14 @@ endsnippet
 context "math()"
 snippet \pddv "second derivative" i
 \pddv{$1}{$2}{$3}$0
+endsnippet
+
+context "math()"
+snippet quant "physical quantity" iw
+$1\si{$2}$0
+endsnippet
+
+context "math()"
+snippet Quant "physical quantity" iw
+$1\Si{$2}$0
 endsnippet

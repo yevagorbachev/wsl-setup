@@ -1,28 +1,30 @@
 colo desert
 syntax on
 
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+
 highlight LineNr ctermfg=grey
 
-set rnu
-set nu
-set hlsearch
-set scrolloff=10
+set nu rnu " set line and relative line numbers
+set hlsearch " highlight search
+set incsearch " highlight next result while searching
+set laststatus=2 " always display statusline
+set scrolloff=10 " leave 10 lines up and down
 set tabstop=4
 set shiftwidth=4
-set regexpengine=1
-set textwidth=120
+set textwidth=80
 
-cnoreabbrev X w
-" cnoreabbrev addsnips UltiSnipsAddFiletypes
-" cnoreabbrev esnip UltiSnipsEdit
+cnoreabbrev X x
+cnoreabbrev Q q
 
 nnoremap <space> za
-nnoremap <C-p> :set paste
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 nnoremap <CR> i<CR><Esc>
 
-au BufNewFile,BufRead *.cls set filetype=tex
 au BufNewFile,BufRead *.sty set filetype=tex
 
 call plug#begin('~/.vim/plugged')
