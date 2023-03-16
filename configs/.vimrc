@@ -25,6 +25,12 @@ nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 nnoremap <CR> i<CR><Esc>
 
+nnoremap H ^
+nnoremap L $
+
+vnoremap H ^
+vnoremap L $
+
 au BufNewFile,BufRead *.sty set filetype=tex
 
 call plug#begin('~/.vim/plugged')
