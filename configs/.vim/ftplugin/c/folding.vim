@@ -1,5 +1,5 @@
-setlocal foldmethod=expr
-setlocal foldexpr=SectionFold(v:lnum)
+setlocal foldmethod=syntax
+
 setlocal foldtext=SectionText()
 setlocal foldcolumn=4
 
