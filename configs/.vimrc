@@ -16,6 +16,7 @@ set scrolloff=10 " leave 10 lines up and down
 set tabstop=4
 set shiftwidth=4
 set textwidth=80
+set guifont=Consolas:h11
 
 cnoreabbrev X x
 cnoreabbrev Q q
@@ -25,11 +26,8 @@ nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 nnoremap <CR> i<CR><Esc>
 
-nnoremap H ^
-nnoremap L $
-
-vnoremap H ^
-vnoremap L $
+map H ^
+map L $
 
 au BufNewFile,BufRead *.sty set filetype=tex
 
