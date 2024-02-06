@@ -5,13 +5,15 @@ setlocal foldcolumn=4
 
 function! MatlabFold(lnum)
 	let line = getline(a:lnum)
-	let start_r = "^\s*\(function\|if\|for\|else\)"
-	let end_r = "^\s*end"
 
-	if (line =~ start_r)
-		return "a1"
-	elseif (line =~ end_r)
-		return "s1"
+	if (line =~ "^%{")
+		return 1
+	elseif (line =~ "^%}")
+		return 0
+	if (line =~ "^function")
+		return "1"
+	elseif (line =~ "^end")
+		return "0"
 	else
 		return "="
 	endif
